@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<head><title>Notes</title></head>
+<body>
+  <h1>Notes</h1>
+  <form method="post" action="/add">
+    <textarea name="text" rows="3" cols="40"></textarea><br>
+    Important: <input type="checkbox" name="important" value="1"><br>
+    <button type="submit">Add</button>
+  </form>
+  <ul>
+    {% for n in notes %}
+      <li>{% if n.important %}<b>{% endif %}{{n.text}}{% if n.important %}</b>{% endif %}</li>
+    {% endfor %}
+  </ul>
+</body>
+</html>

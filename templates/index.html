@@ -1,16 +1,52 @@
 <!doctype html>
 <html>
-<head><title>Notes</title></head>
+<head>
+  <meta charset="UTF-8">
+  <title>Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    form {
+      margin-bottom: 20px;
+      background-color: #e6f2ff;
+      padding: 15px;
+      border-radius: 8px;
+      width: 400px;
+    }
+    textarea {
+      width: 100%;
+      resize: none;
+    }
+    .note {
+      margin-bottom: 10px;
+      padding: 5px;
+      border-bottom: 1px solid #ccc;
+    }
+    .important {
+      font-weight: bold;
+      color: red;
+    }
+  </style>
+</head>
 <body>
   <h1>Notes</h1>
+
   <form method="post" action="/add">
-    <textarea name="text" rows="3" cols="40"></textarea><br>
-    Important: <input type="checkbox" name="important" value="1"><br>
+    <textarea name="text" rows="3" cols="40" placeholder="Введите заметку..."></textarea><br><br>
+    Important: <input type="checkbox" name="important" value="1"><br><br>
     <button type="submit">Add</button>
   </form>
+
   <ul>
     {% for n in notes %}
-      <li>{% if n.important %}<b>{% endif %}{{n.text}}{% if n.important %}</b>{% endif %}</li>
+      <li class="note {% if n.important %}important{% endif %}">{{ n.text }}</li>
     {% endfor %}
   </ul>
 </body>
